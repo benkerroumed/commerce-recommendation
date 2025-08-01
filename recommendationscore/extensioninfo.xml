@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+           
+    
+    <extension abstractclassprefix="Generated" classprefix="Recommendationscore" jaloLogicFree="true" managername="RecommendationscoreManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="recommendationscore" usemaven="false">
+
+        <requires-extension name="commercefacades"/>
+
+      
+        
+        <!-- for more information on maven managed libraries please consult https://wiki.hybris.com/x/Nq8sDQ -->
+                               
+      
+        
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+                         
+      
+        
+        <!-- <requires-extension name="cms"/> -->
+                         
+      
+
+      
+        
+        <coremodule generated="true" manager="com.recommendations.core.jalo.RecommendationscoreManager" packageroot="com.recommendations.core"/>
+                      
+        
+        <webmodule jspcompile="false" webroot="/recommendationscore"/>
+
+
+
+
+	
+        
+           
+    
+    </extension>
+              
+
+
+</extensioninfo>

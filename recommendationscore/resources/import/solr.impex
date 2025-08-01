@@ -1,0 +1,47 @@
+$id = Origami
+$defaultSortOrder = defaultSortOrder;
+$document = document(code);
+$solrSearchConfig = solrSearchConfig(&Item);
+$solrIndexerQueries = solrIndexerQueries(identifier)[forceWrite = true];
+$solrIndexedTypes = solrIndexedTypes(identifier);
+$solrServerConfig = solrServerConfig(name);
+$solrIndexConfig = solrIndexConfig(name);
+$solrIndexedType = solrIndexedType(identifier)[unique = true, default = $idProduct];
+$configName = $id Solr Config
+$ftsWildcardQueryType = ftsWildcardQueryType(code);
+$catalogVersions = catalogVersions(catalog(id), version);
+
+
+$productCatalog = familiprixB2CProductCatalog
+
+INSERT_UPDATE SolrSearchConfig; &Item; pageSize[unique = true]; description[unique = true]; $defaultSortOrder; legacyMode; restrictFieldsInResponse;
+                              ; $id  ; 20                     ; $id SolrSearchConfig      ; score,pk         ; false     ; true                    ;
+
+INSERT_UPDATE SolrIndexerQuery; identifier[unique = true]; type(code); query                      ; injectLastIndexTime[default = false]; injectCurrentTime[default = true]; injectCurrentDate[default = true]; user(uid) ; solrIndexerQueryParameters(name);
+                              ; $idProductFull           ; full      ; SELECT {pk} FROM {Product} ;                                     ;                                  ;                                  ; anonymous ;                                 ;
+
+INSERT_UPDATE SolrIndexedType; identifier[unique = true]; type(code); $solrIndexerQueries; variant; identityProvider        ; modelLoader; configSet; indexName   ; listeners; additionalParameters[map-delimiter = |]
+                             ; $idProduct               ; Product   ; $idProductFull     ; false  ; productIdentityProvider ;            ; default  ; $id_product ;          ;
+
+INSERT_UPDATE SolrIndexedProperty; name[unique = true]; $solrIndexedType; type(code); localized[default = false]; currency[default = false]; multiValue[default = false]; fieldValueProvider; ftsQuery; ftsQueryBoost; ftsPhraseQuery; ftsPhraseQueryBoost; ftsWildcardQuery; $ftsWildcardQueryType; includeInResponse; useForSpellChecking; useForAutocomplete;
+                                 ; code               ;                 ; string    ;                           ;                          ;                            ;                   ; true    ; 1.0          ; true          ; 5.0                ; true            ; POSTFIX              ; false            ; true               ; true              ;
+
+INSERT_UPDATE SolrIndexedProperty; name[unique = true]; $solrIndexedType; type(code); localized[default = false]; currency[default = false]; multiValue[default = false]; fieldValueProvider; ftsQuery; ftsQueryBoost; ftsPhraseQuery; ftsPhraseQueryBoost; includeInResponse; useForSpellChecking; useForAutocomplete;
+                                 ; pk                 ;                 ; string    ; false                     ;                          ;                            ;                   ; true    ; 1.0          ; true          ; 10.0               ; false            ; false              ; false             ;
+
+
+INSERT_UPDATE SolrIndexConfig; name[unique = true]; legacyMode; batchSize; exportPath; indexMode(code);
+                             ; $id-indexConfig    ; false     ; 1000     ;           ; DIRECT         ;
+
+INSERT_UPDATE SolrFacetSearchConfig; name[unique = true]; description ; $document; $solrSearchConfig; currencies(isocode); languages(isocode); $solrIndexedTypes; $solrServerConfig; $solrIndexConfig; indexNamePrefix; $catalogVersions
+                                   ; $configName        ; $configName ;          ; $id              ;                    ; en                ; $idProduct       ; Default          ; $id-indexConfig ; origami        ; $productCatalog:Online ;
+
+
+
+
+INSERT_UPDATE SolrIndexedProperty; $solrIndexedType; name[unique = true]; type(code); multiValue[default = true]; facet[default = false]; visible; categoryField[default = true]; fieldValueProvider                 ; valueProviderParameters[map-delimiter = |]                         ; includeInResponse
+                                 ;                 ; example_strategy_1 ; string    ;                           ;                       ; true   ; false                        ; origamiQueryScoreSolrValueProvider ; query->SELECT top 10 {code}, 1 FROM {Product}                      ; true
+                                 ;                 ; example_strategy_2 ; string    ;                           ;                       ; true   ; false                        ; origamiQueryScoreSolrValueProvider ; query->SELECT top 10 {code}, 1 FROM {Product} order by {code}      ; true
+                                 ;                 ; example_strategy_3 ; string    ;false                           ;                       ; true   ; false                        ; origamiQueryScoreSolrValueProvider ; query->SELECT top 10 {code}, 1 FROM {Product} order by {code} desc ; true
+
+          
