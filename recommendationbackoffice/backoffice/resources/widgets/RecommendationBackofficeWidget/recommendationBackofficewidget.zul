@@ -1,0 +1,32 @@
+<widget xmlns="http://www.zkoss.org/2005/zul"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:h="http://www.w3.org/1999/xhtml"
+        xmlns:w="http://www.zkoss.org/2005/zk/client"
+        xmlns:zk="http://www.zkoss.org/2005/zk"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%">
+    <div sclass="origami-container">
+        <label sclass="origami-header" value="Origami Strategy Tester" />
+
+        <div sclass="origami-form-grid">
+            <vlayout>
+                <label sclass="origami-input-label" value="Product Code:" />
+                <textbox id="productInput" width="100%" />
+            </vlayout>
+
+            <vlayout>
+                <label sclass="origami-input-label" value="Strategy Name:" />
+                <textbox id="strategyInput" width="100%" />
+            </vlayout>
+
+            <button id="searchBtn" sclass="origami-search-btn" label="Search" width="100px" />
+        </div>
+
+        <listbox id="resultsList" width="100%" mold="paging" pageSize="10" sclass="origami-results">
+            <listhead>
+                <listheader label="Product Code" width="60%" />
+                <listheader label="Score" width="40%" />
+            </listhead>
+        </listbox>
+    </div>
+</widget>

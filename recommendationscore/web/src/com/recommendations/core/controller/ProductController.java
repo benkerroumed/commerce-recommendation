@@ -26,7 +26,7 @@ public class ProductController {
     /**
      * Endpoint to get related products for a given product code and strategy.
      *
-     * @param productCode the product code
+     * @param productCodes the product code
      * @param strategy the strategy name
      * @return the related products as a DTO that supports JSON or XML
      * @throws FacetConfigServiceException if there is an error with the Solr configuration
