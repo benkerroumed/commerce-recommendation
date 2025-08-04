@@ -6,9 +6,36 @@
 	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
 
     <widget-extension widgetId="backofficeMainSlot">
-        <widget id="recommendationBackoffice-perspective" widgetDefinitionId="com.recommendations.widgets.recommendationBackofficewidget"
-            template="false" slotId="perspectives" title="Hello recommendationBackoffice" >
+
+    <widget id="OrigamiLayout" widgetDefinitionId="com.hybris.cockpitng.borderlayout" slotId="perspectives"
+            template="false" title="Origami">
+
+
+        <widget id="orimgamiSearchWidget" widgetDefinitionId="com.recommendations.widgets.recommendationBackofficewidget"
+                template="false" slotId="headerSlot" title="recommendationBackoffice">
         </widget>
+
+        <widget id="productDetails-collectionbrowser" widgetDefinitionId="com.hybris.cockpitng.collectionBrowser"
+                slotId="centerSlot">
+            <setting key="pagingPosition">bottom</setting>
+            <setting key="hyperlinks" type="Boolean">false</setting>
+            <setting key="listTitle" type="String">Related Product</setting>
+            <setting key="multiSelect" type="Boolean">false</setting>
+            <setting key="socketDataType_$T" type="String">de.hybris.platform.core.model.product.ProductModel</setting>
+        </widget>
+
+
+        <setting key="northDisabled" type="Boolean" value="false" />
+        <setting key="centerDisabled" type="Boolean" value="false" />
+        <setting key="southDisabled" type="Boolean" value="false" />
+        <setting key="westDisabled" type="Boolean" value="false" />
+        <setting key="eastDisabled" type="Boolean" value="false" />
+        <setting key="northHeight" type="String" value="100px"/>
+    </widget>
+
     </widget-extension>
+
+    <widget-connection sourceWidgetId="orimgamiSearchWidget" outputId="pageable"
+                       targetWidgetId="productDetails-collectionbrowser" inputId="pageable"/>
 
 </widgets>

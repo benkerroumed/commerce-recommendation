@@ -3,8 +3,7 @@ package com.recommendations.core.facade.impl;
 import com.recommendations.core.data.SolrIndexedData;
 import com.recommendations.core.facade.OrigamiFacade;
 import com.recommendations.core.search.OrigamiSearchResult;
-import de.hybris.platform.commercefacades.search.data.SearchFilterQueryData;
-import de.hybris.platform.commerceservices.search.solrfacetsearch.data.FilterQueryOperator;
+import com.recommendations.core.service.OrigamiService;
 import de.hybris.platform.commerceservices.search.solrfacetsearch.impl.DefaultSolrFacetSearchProductSearchStrategy;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
@@ -36,6 +35,9 @@ public class OrigamiFacadeImpl extends DefaultSolrFacetSearchProductSearchStrate
     @Resource
     private ConfigurationService configurationService;
 
+    @Resource
+    private OrigamiService origamiService;
+
 
     @Override
     public Optional<List<SolrIndexedData>> findRelatedProducts(List<String> product, String strategy) throws FacetConfigServiceException, FacetSearchException {
@@ -52,6 +54,11 @@ public class OrigamiFacadeImpl extends DefaultSolrFacetSearchProductSearchStrate
 
         // If the strategy is not found or not the expected type, return empty Optional
         return Optional.empty();
+    }
+
+    @Override
+    public Set<String> getAvailableStrategies() {
+        return origamiService.getAvailableStrategies();
     }
 
     /**

@@ -3,8 +3,8 @@
  Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
@@ -12,17 +12,17 @@
     </bean>
 
     <bean id="origamiSearchStrategy" parent="defaultFacetSearchStrategy">
-        <property name="facetSearchQueryConverter" ref="facetSearchQueryConverter" />
-        <property name="facetSearchResultConverter" ref="origamiSearchResultConverter" />
+        <property name="facetSearchQueryConverter" ref="facetSearchQueryConverter"/>
+        <property name="facetSearchResultConverter" ref="origamiSearchResultConverter"/>
     </bean>
 
     <bean id="origamiSearchResultPopulator" class="com.recommendations.core.populator.OrigamiSearchResultPopulator"/>
 
     <bean id="origamiSearchResultConverter" parent="abstractPopulatingConverter">
-        <property name="targetClass" value="com.recommendations.core.search.OrigamiSearchResult" />
+        <property name="targetClass" value="com.recommendations.core.search.OrigamiSearchResult"/>
         <property name="populators">
             <list>
-                <ref bean="origamiSearchResultPopulator" />
+                <ref bean="origamiSearchResultPopulator"/>
             </list>
         </property>
     </bean>
@@ -35,7 +35,9 @@
           class="com.recommendations.core.provider.OrigamiQueryScoreSolrValueProvider"
           parent="abstractValueResolver"/>
 
-    <bean class="com.recommendations.core.facade.impl.OrigamiFacadeImpl" name="origamiFacade" parent="defaultCommerceSolrFacetSearchProductSearchStrategy"/>
+    <bean class="com.recommendations.core.facade.impl.OrigamiFacadeImpl" name="origamiFacade"
+          parent="defaultCommerceSolrFacetSearchProductSearchStrategy"/>
 
+    <bean class="com.recommendations.core.service.impl.DefaultOrigamiService" name="origamiService"/>
 
 </beans>

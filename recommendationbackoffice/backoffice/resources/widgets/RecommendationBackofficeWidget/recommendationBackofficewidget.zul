@@ -16,17 +16,17 @@
 
             <vlayout>
                 <label sclass="origami-input-label" value="Strategy Name:" />
-                <textbox id="strategyInput" width="100%" />
+                 <combobox id="strategyInput" autodrop="true">
+                      <template name="model">
+                          <comboitem label="${each}" />
+                      </template>
+                  </combobox>
+
             </vlayout>
 
             <button id="searchBtn" sclass="origami-search-btn" label="Search" width="100px" />
         </div>
 
-        <listbox id="resultsList" width="100%" mold="paging" pageSize="10" sclass="origami-results">
-            <listhead>
-                <listheader label="Product Code" width="60%" />
-                <listheader label="Score" width="40%" />
-            </listhead>
-        </listbox>
+
     </div>
 </widget>

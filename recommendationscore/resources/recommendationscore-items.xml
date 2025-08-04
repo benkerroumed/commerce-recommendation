@@ -11,13 +11,14 @@
 
 	<itemtypes>
 
-        <itemtype code="OrigamiSolrIndexedProperty" extends="SolrIndexedProperty" >
-            <attributes>
-                <attribute qualifier="query" type="boolean">
-                    <persistence type="property"/>
-                </attribute>
-            </attributes>
-        </itemtype>
+<!--        <itemtype code="OrigamiStrategy" >-->
+<!--            <deployment table="OrigamiStrategy" typecode="31111"/>-->
+<!--            <attributes>-->
+<!--                <attribute qualifier="query" type="java.lang.String">-->
+<!--                    <persistence type="property"/>-->
+<!--                </attribute>-->
+<!--            </attributes>-->
+<!--        </itemtype>-->
 
     </itemtypes>
 </items>

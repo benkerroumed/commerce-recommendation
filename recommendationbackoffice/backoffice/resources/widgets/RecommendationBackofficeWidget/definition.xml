@@ -1,18 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!--
- Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
--->
 <widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
-	id="com.recommendations.widgets.recommendationBackofficewidget">
-	<name>recommendationBackoffice Sample Widget</name>
-	<description>recommendationBackoffice Sample Widget</description>
-	<defaultTitle>recommendationBackoffice Sample Widget</defaultTitle>
-	<author>Extgen</author>
-	<version>1.0</version>
-	<view src="recommendationBackofficewidget.zul" />
-	<keywords>
-		<keyword>recommendationBackoffice</keyword>
-	</keywords>
-	<controller class="com.recommendations.widgets.RecommendationBackofficeController" />
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="com.recommendations.widgets.recommendationBackofficewidget" >
+
+    <name>recommendationBackoffice Sample Widget</name>
+    <description>recommendationBackoffice Sample Widget</description>
+    <defaultTitle>recommendationBackoffice Sample Widget</defaultTitle>
+    <author>Extgen</author>
+    <version>1.0</version>
+    <view src="recommendationBackofficewidget.zul" />
+
+    <keywords>
+        <keyword>recommendationBackoffice</keyword>
+    </keywords>
+
+    <controller class="com.recommendations.widgets.RecommendationBackofficeController" />
+
+    <sockets>
+        <output id="pageable" type="java.util.List" />
+    </sockets>
 </widget-definition>

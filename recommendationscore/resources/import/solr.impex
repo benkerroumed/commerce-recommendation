@@ -42,6 +42,6 @@ INSERT_UPDATE SolrFacetSearchConfig; name[unique = true]; description ; $documen
 INSERT_UPDATE SolrIndexedProperty; $solrIndexedType; name[unique = true]; type(code); multiValue[default = true]; facet[default = false]; visible; categoryField[default = true]; fieldValueProvider                 ; valueProviderParameters[map-delimiter = |]                         ; includeInResponse
                                  ;                 ; example_strategy_1 ; string    ;                           ;                       ; true   ; false                        ; origamiQueryScoreSolrValueProvider ; query->SELECT top 10 {code}, 1 FROM {Product}                      ; true
                                  ;                 ; example_strategy_2 ; string    ;                           ;                       ; true   ; false                        ; origamiQueryScoreSolrValueProvider ; query->SELECT top 10 {code}, 1 FROM {Product} order by {code}      ; true
-                                 ;                 ; example_strategy_3 ; string    ;false                           ;                       ; true   ; false                        ; origamiQueryScoreSolrValueProvider ; query->SELECT top 10 {code}, 1 FROM {Product} order by {code} desc ; true
+                                 ;                 ; example_strategy_3 ; string    ;false                           ;                       ; true   ; false                        ; origamiQueryScoreSolrValueProvider ; query->SELECT top 100 {pk}, 1 FROM {Product} order by {code} desc ; true
 
           
